@@ -1,0 +1,42 @@
+{
+  "client": "Toyota",
+  "order": 2,
+  "cardImage": "/images/Toyota-Home.jpg",
+  "cardImageOverlay": "",
+  "cardDescription": "Design work across brand, digital, and product for Toyota Australia.",
+  "stickyDescription": "A broad body of work from my time as a Design Director at R/GA. I led design system work through ToyotaKit, art directed CGI briefs, and drove motion design across digital and campaign outputs.",
+  "imageBlocks": [
+    {
+      "src": "/images/Full-width.jpg",
+      "alt": "Toyota",
+      "_template": "fullWidth"
+    },
+    {
+      "leftSrc": "http://localhost:3845/assets/0c52a6c85248b15ef63ced4762f41c14981a544a.png",
+      "leftAlt": "Crayon",
+      "leftVideoSrc": "/images/P2_Left.mp4",
+      "rightSrc": "http://localhost:3845/assets/4132aa099dae11a9d0b93d98c83f0c7c5acaad1d.png",
+      "rightAlt": "Crayon",
+      "rightVideoSrc": "/images/iphone-mockup.png0001-0084.mp4",
+      "_template": "pair"
+    },
+    {
+      "src": "/images/gallery_cylinder.mp4",
+      "_template": "fullWidthVideo"
+    },
+    {
+      "src": "/images/Toyota_P4.jpg",
+      "alt": "Toyota",
+      "_template": "fullWidth"
+    },
+    {
+      "leftSrc": "http://localhost:3845/assets/c6a645d068ffd5fd0435b0e1ed63810fc893a5d1.png",
+      "leftAlt": "Zoox",
+      "leftVideoSrc": "/images/TVS.mp4",
+      "rightSrc": "/images/Toyota_P5b.jpg",
+      "rightAlt": "Nike",
+      "rightVideoSrc": "",
+      "_template": "pair"
+    }
+  ]
+}

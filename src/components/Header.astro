@@ -1,0 +1,37 @@
+---
+interface Props {
+  homeLink?: string;
+}
+const { homeLink = '/' } = Astro.props;
+---
+<header>
+  <a href={homeLink} class="header-logo">
+    <img
+      class="logo-desktop"
+      src="/images/logo-desktop.svg"
+      alt="Fraser Daniell"
+      style="width:220px; height:17px; display:block;"
+    />
+    <img
+      class="logo-mobile"
+      src="/images/logo-mobile.svg"
+      alt="Fraser Daniell"
+      style="width:177px; height:16px; display:none;"
+    />
+  </a>
+  <nav></nav>
+  <div class="header-right">
+    <button class="contact-btn" id="contact-btn">
+      <span class="contact-label">Contact</span>
+      <span class="copied">Copied</span>
+    </button>
+  </div>
+</header>
+
+<script is:inline>
+  document.getElementById('contact-btn').addEventListener('click', function () {
+    navigator.clipboard.writeText('fraser.daniell@gmail.com').catch(() => {});
+    this.classList.add('show-copied');
+    setTimeout(() => this.classList.remove('show-copied'), 2000);
+  });
+</script>

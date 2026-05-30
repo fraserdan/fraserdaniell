@@ -1,0 +1,23 @@
+---
+import { getEntry } from 'astro:content';
+
+interface Props {
+  showLogo?: boolean;
+}
+const { showLogo = true } = Astro.props;
+
+const settings = await getEntry('settings', 'main');
+const { copyright, location, timezone } = settings.data;
+---
+<footer>
+  {showLogo && (
+    <div class="footer-name">
+      <img src="/images/logo-footer.svg" alt="Fraser Daniell" />
+    </div>
+  )}
+  <div class={`footer-bottom${showLogo ? '' : ' footer-bottom--large'}`}>
+    <div class="footer-copyright">{copyright}</div>
+    <div class="footer-location">{location}</div>
+    <div class="footer-timezone">{timezone}</div>
+  </div>
+</footer>

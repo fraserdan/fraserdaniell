@@ -1,0 +1,37 @@
+{
+  "client": "Crayon",
+  "order": 1,
+  "cardImage": "/images/Crayon-Home.jpg",
+  "cardDescription": "A brand system for a colour grading studio and the colourists behind it.",
+  "stickyDescription": "A brand system built around the people behind the work. For Crayon's roster of colourists, the goal was a more elevated presence and a set of tools they could carry forward on their own.",
+  "imageBlocks": [
+    {
+      "src": "/images/Full-width (2).mp4",
+      "_template": "fullWidthVideo"
+    },
+    {
+      "leftSrc": "",
+      "leftVideoSrc": "/images/P2a.mp4",
+      "rightSrc": "/images/P2b.jpg",
+      "_template": "pair"
+    },
+    {
+      "src": "/images/P3.jpg",
+      "_template": "fullWidth"
+    },
+    {
+      "src": "/images/Crayon-P4.jpg",
+      "_template": "fullWidth"
+    },
+    {
+      "leftSrc": "/images/P5a.jpg",
+      "leftVideoSrc": "",
+      "rightVideoSrc": "/images/P6b.mp4",
+      "_template": "pair"
+    },
+    {
+      "src": "/images/P5.jpg",
+      "_template": "fullWidth"
+    }
+  ]
+}

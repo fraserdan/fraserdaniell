@@ -1,0 +1,38 @@
+fragment SettingsParts on Settings {
+  __typename
+  heroVideo
+  heroImage
+  bio
+  projectDescription
+  location
+  timezone
+  copyright
+}
+
+fragment ProjectsParts on Projects {
+  __typename
+  client
+  order
+  cardImage
+  cardImageOverlay
+  cardDescription
+  stickyDescription
+  imageBlocks {
+    __typename
+    ... on ProjectsImageBlocksFullWidth {
+      src
+      alt
+    }
+    ... on ProjectsImageBlocksFullWidthVideo {
+      src
+    }
+    ... on ProjectsImageBlocksPair {
+      leftSrc
+      leftAlt
+      leftVideoSrc
+      rightSrc
+      rightAlt
+      rightVideoSrc
+    }
+  }
+}

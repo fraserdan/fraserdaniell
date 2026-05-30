@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+const settings = await getEntry('settings', 'main');
+const { bio, heroImage, heroVideo } = settings.data;
+
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+<BaseLayout title="Fraser Daniell">
+  <Header />
+
+  <main class="home-main">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        {heroVideo ? (
+          <video autoplay loop muted playsinline src={heroVideo}></video>
+        ) : (
+          <img src={heroImage} alt="Fraser Daniell — featured project" />
+        )}
+      </div>
+    </section>
+
+    <!-- BIO -->
+    <section class="bio">
+      <p class="section-eyebrow">About</p>
+      <p>{bio}</p>
+    </section>
+
+    <!-- FEATURED WORK -->
+    <section class="featured">
+      <div class="featured-header">
+        <p class="section-eyebrow">Featured Work</p>
+      </div>
+
+      <div class="work-grid">
+        {projects.map((project) => (
+          <a class="work-card" href={`/projects/${project.id}`}>
+            <div class={`work-card-image${project.data.cardImageOverlay ? ' has-overlay' : ''}`}>
+              <img src={project.data.cardImage} alt={project.data.client} />
+              {project.data.cardImageOverlay && (
+                <img src={project.data.cardImageOverlay} alt="" aria-hidden="true" />
+              )}
+            </div>
+            <div class="work-card-info">
+              <div class="work-card-client">{project.data.client}</div>
+              <div class="work-card-desc">{project.data.cardDescription}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+  </main>
+
+  <Footer showLogo={false} />
+</BaseLayout>
+
+<script is:inline>
+  // ── Hero mask — trigger on first scroll ──────────────────────
+  (function () {
+    const hero    = document.querySelector('.hero-inner');
+    const START   = 64;
+    let triggered = false;
+
+    function initialClip() {
+      const w = hero.offsetWidth, h = hero.offsetHeight;
+      return `inset(${((h - START) / 2).toFixed(1)}px ${((w - START) / 2).toFixed(1)}px round 4px)`;
+    }
+
+    function setInitial() {
+      hero.style.transition = 'none';
+      hero.style.clipPath   = initialClip();
+      hero.offsetHeight;
+      hero.style.transition = '';
+    }
+    setInitial();
+
+    function release() {
+      document.documentElement.style.overflow     = '';
+      document.documentElement.style.paddingRight = '';
+    }
+
+    function trigger() {
+      if (triggered) return;
+      triggered = true;
+      document.removeEventListener('wheel',     onWheel,     { passive: false });
+      document.removeEventListener('touchmove', onTouchMove, { passive: false });
+      hero.classList.add('open');
+      hero.style.clipPath = 'inset(0px round 4px)';
+      hero.addEventListener('transitionend', (e) => {
+        if (e.propertyName === 'clip-path') release();
+      }, { once: true });
+      setTimeout(release, 750);
+    }
+
+    function onWheel(e) { e.preventDefault(); if (e.deltaY > 0) trigger(); }
+    function onTouchMove(e) { e.preventDefault(); trigger(); }
+
+    const sb = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.style.overflow     = 'hidden';
+    document.documentElement.style.paddingRight = sb + 'px';
+
+    document.addEventListener('wheel',     onWheel,     { passive: false });
+    document.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('resize', () => { if (!triggered) setInitial(); }, { passive: true });
+  })();
+</script>

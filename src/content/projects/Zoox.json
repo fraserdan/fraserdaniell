@@ -1,0 +1,51 @@
+{
+  "client": "Zoox",
+  "order": 3,
+  "cardImage": "/images/Zoox-home.jpg",
+  "cardImageOverlay": "",
+  "cardDescription": "Creative work around the reveal of Zoox's first autonomous vehicle.",
+  "stickyDescription": "A broad body of work for one of the more ambitious companies in the autonomous vehicle space. Projects ranged from signage and wayfinding through to recruiting campaigns and a visual system for the computer vision team.",
+  "imageBlocks": [
+    {
+      "src": "/images/Zoox-P1.jpg",
+      "_template": "fullWidth"
+    },
+    {
+      "leftSrc": "/images/Zoox-P2a.jpg",
+      "leftVideoSrc": "",
+      "rightSrc": "/images/Zoox-P2b.jpg",
+      "rightVideoSrc": "",
+      "_template": "pair"
+    },
+    {
+      "src": "/images/Zoox-P3.mp4",
+      "_template": "fullWidthVideo"
+    },
+    {
+      "src": "/images/Zoox-P4.jpg",
+      "_template": "fullWidth"
+    },
+    {
+      "src": "/images/Zoox-P5.mp4",
+      "_template": "fullWidthVideo"
+    },
+    {
+      "src": "/images/Zoox-P6.jpg",
+      "_template": "fullWidth"
+    },
+    {
+      "leftSrc": "/images/Zoox-P7a.jpg",
+      "rightSrc": "/images/Zoox-P7b.jpg",
+      "_template": "pair"
+    },
+    {
+      "src": "/images/Zoox-P8.mp4",
+      "_template": "fullWidthVideo"
+    },
+    {
+      "leftSrc": "/images/Zoox-P9b.jpg",
+      "rightSrc": "/images/Zoox-P9a.jpg",
+      "_template": "pair"
+    }
+  ]
+}

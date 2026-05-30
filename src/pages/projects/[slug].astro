@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { client, stickyDescription, imageBlocks = [] } = project.data;
+
+// Fall back to global description if project doesn't override
+const settings = await getEntry('settings', 'main');
+const description = stickyDescription || settings.data.projectDescription || '';
+---
+<BaseLayout title={`${client} — Fraser Daniell`}>
+  <Header homeLink="/" />
+
+  <main class="project-main">
+    <div class="project-layout">
+
+      <!-- Sticky description — desktop only -->
+      <aside class="project-sticky-col">
+        <h1 class="project-title">{client}</h1>
+        <div class="project-info-group">
+          <p class="project-info-label">Project information</p>
+          <p class="project-desc">{description}</p>
+        </div>
+      </aside>
+
+      <!-- Images column -->
+      <div class="project-images-col">
+
+        {imageBlocks.map((block, i) => {
+          if (block._template === 'fullWidth') {
+            return (
+              <div class="img-row img-full">
+                <img
+                  src={block.src}
+                  alt={block.alt}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                />
+              </div>
+            );
+          }
+
+          if (block._template === 'fullWidthVideo') {
+            return (
+              <div class="img-row img-full">
+                <video autoplay loop muted playsinline src={block.src}></video>
+              </div>
+            );
+          }
+
+          if (block._template === 'pair') {
+            return (
+              <div class="img-row img-pair">
+                <div class="img-cell">
+                  {block.leftVideoSrc
+                    ? <video autoplay loop muted playsinline src={block.leftVideoSrc}></video>
+                    : <img src={block.leftSrc} alt={block.leftAlt} loading="lazy" />
+                  }
+                </div>
+                <div class="img-cell">
+                  {block.rightVideoSrc
+                    ? <video autoplay loop muted playsinline src={block.rightVideoSrc}></video>
+                    : <img src={block.rightSrc} alt={block.rightAlt} loading="lazy" />
+                  }
+                </div>
+              </div>
+            );
+          }
+        })}
+
+        <!-- Description shown after first image on mobile -->
+        <div class="mobile-desc">{description}</div>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer showLogo={false} />
+</BaseLayout>
+
+<script is:inline>
+  document.querySelectorAll('.img-row img, .img-cell img').forEach(function (img) {
+    if (img.complete) {
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', function () { img.classList.add('loaded'); });
+    }
+  });
+
+  document.querySelectorAll('.img-row video, .img-cell video').forEach(function (video) {
+    function showVideo() { video.classList.add('loaded'); }
+    if (video.readyState >= 1) {
+      showVideo();
+    } else {
+      video.addEventListener('loadedmetadata', showVideo, { once: true });
+      // Fallback: show after a short delay in case the event already fired
+      setTimeout(showVideo, 500);
+    }
+  });
+</script>

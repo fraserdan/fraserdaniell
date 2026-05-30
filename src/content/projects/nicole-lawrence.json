@@ -1,0 +1,22 @@
+{
+  "client": "Nicole Lawrence",
+  "order": 4,
+  "cardImage": "/images/NL-Home.jpg",
+  "cardDescription": "Detailed CGI work that puts material, texture, and light at the centre.",
+  "stickyDescription": "Working with Nicole Lawrence Studio to bring industrial design objects to life through CGI. The brief centered on material and lighting exploration. Finding the right way to render form, texture, and finish in a way that felt considered rather than clinical.",
+  "imageBlocks": [
+    {
+      "src": "/images/NL-P1.jpg",
+      "_template": "fullWidth"
+    },
+    {
+      "leftSrc": "/images/NL-P2a.jpg",
+      "rightSrc": "/images/NL-P2b.jpg",
+      "_template": "pair"
+    },
+    {
+      "src": "/images/0001-0096.mp4",
+      "_template": "fullWidthVideo"
+    }
+  ]
+}
