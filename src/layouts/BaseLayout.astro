@@ -24,10 +24,12 @@ const favicon = settings?.data.favicon;
 <body>
   <slot />
   <script is:inline>
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('video').forEach(function (v) {
-        v.muted = true;
-        v.play().catch(function () {});
+    document.querySelectorAll('video').forEach(function (v) {
+      v.muted = true;
+      v.play().catch(function () {
+        v.addEventListener('canplay', function () {
+          v.play().catch(function () {});
+        }, { once: true });
       });
     });
   </script>
