@@ -23,5 +23,13 @@ const favicon = settings?.data.favicon;
 </head>
 <body>
   <slot />
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('video').forEach(function (v) {
+        v.muted = true;
+        v.play().catch(function () {});
+      });
+    });
+  </script>
 </body>
 </html>
