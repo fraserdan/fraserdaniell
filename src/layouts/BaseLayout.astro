@@ -28,7 +28,6 @@ const favicon = settings?.data.favicon;
       function tryPlay(v) {
         if (getComputedStyle(v).display === 'none') return;
         v.muted = true;
-        v.load();
         v.play().catch(function () {
           v.addEventListener('canplay', function () {
             v.muted = true;

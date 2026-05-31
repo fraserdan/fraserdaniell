@@ -53,7 +53,7 @@ const description = stickyDescription || settings.data.projectDescription || '';
           if (block._template === 'fullWidthVideo') {
             return (
               <div class="img-row img-full">
-                <video loop muted playsinline src={block.src}></video>
+                <video autoplay loop muted playsinline src={block.src}></video>
               </div>
             );
           }
@@ -63,13 +63,13 @@ const description = stickyDescription || settings.data.projectDescription || '';
               <div class="img-row img-pair">
                 <div class="img-cell">
                   {block.leftVideoSrc
-                    ? <video loop muted playsinline src={block.leftVideoSrc}></video>
+                    ? <video autoplay loop muted playsinline src={block.leftVideoSrc}></video>
                     : <img src={block.leftSrc} alt={block.leftAlt} loading="lazy" />
                   }
                 </div>
                 <div class="img-cell">
                   {block.rightVideoSrc
-                    ? <video loop muted playsinline src={block.rightVideoSrc}></video>
+                    ? <video autoplay loop muted playsinline src={block.rightVideoSrc}></video>
                     : <img src={block.rightSrc} alt={block.rightAlt} loading="lazy" />
                   }
                 </div>
