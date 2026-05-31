@@ -461,11 +461,14 @@ footer {
   }
 
   .hero-inner {
-    aspect-ratio: 350 / 437;
+    aspect-ratio: 1 / 1;
   }
 
-  .bio p {
-    font-size: 32px;
+  .hero-video--desktop { display: none; }
+  .hero-video--mobile  { display: block; }
+
+  .bio p:not(.section-eyebrow) {
+    font-size: 24px;
     letter-spacing: -0.03em;
   }
 
@@ -500,9 +503,6 @@ footer {
     color: #000;
   }
 
-  .img-full { aspect-ratio: 350 / 225; }
-
-  .img-cell { aspect-ratio: 350 / 323; }
 
   /* Footer */
   footer {
@@ -527,4 +527,6 @@ footer {
 @media (min-width: 901px) {
   .logo-desktop { display: block !important; }
   .logo-mobile  { display: none !important; }
+  .hero-video--desktop { display: block; }
+  .hero-video--mobile  { display: none; }
 }

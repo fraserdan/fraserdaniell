@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 import { getCollection, getEntry } from 'astro:content';
 
 const settings = await getEntry('settings', 'main');
-const { bio, heroImage, heroVideo } = settings.data;
+const { bio, heroImage, heroVideo, heroVideoMobile } = settings.data;
 
 const allProjects = await getCollection('projects');
 const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
@@ -18,7 +18,12 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
     <!-- HERO -->
     <section class="hero">
       <div class="hero-inner">
-        {heroVideo ? (
+        {heroVideo && heroVideoMobile ? (
+          <>
+            <video class="hero-video--desktop" autoplay loop muted playsinline src={heroVideo}></video>
+            <video class="hero-video--mobile" autoplay loop muted playsinline src={heroVideoMobile}></video>
+          </>
+        ) : heroVideo ? (
           <video autoplay loop muted playsinline src={heroVideo}></video>
         ) : (
           <img src={heroImage} alt="Fraser Daniell — featured project" />

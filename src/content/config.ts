@@ -38,6 +38,7 @@ const settings = defineCollection({
   type: 'data',
   schema: z.object({
     heroVideo: z.string().optional(),
+    heroVideoMobile: z.string().optional(),
     heroImage: z.string().optional(),
     bio: z.string(),
     projectDescription: z.string().optional(),
