@@ -1,11 +1,14 @@
 ---
 import '../styles/global.css';
+import { getEntry } from 'astro:content';
 
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
+const settings = await getEntry('settings', 'main');
+const favicon = settings?.data.favicon;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +16,7 @@ const { title } = Astro.props;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
+  {favicon && <link rel="icon" href={favicon} />}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&display=swap" rel="stylesheet" />

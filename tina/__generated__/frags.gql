@@ -5,6 +5,7 @@ fragment SettingsParts on Settings {
   heroImage
   bio
   projectDescription
+  favicon
   location
   timezone
   copyright

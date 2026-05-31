@@ -40,6 +40,7 @@ const settings = defineCollection({
     heroVideo: z.string().optional(),
     heroVideoMobile: z.string().optional(),
     heroImage: z.string().optional(),
+    favicon: z.string().optional(),
     bio: z.string(),
     projectDescription: z.string().optional(),
     location: z.string(),

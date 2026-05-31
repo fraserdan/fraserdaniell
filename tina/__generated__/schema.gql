@@ -96,6 +96,7 @@ type Settings implements Node & Document {
   heroImage: String
   bio: String!
   projectDescription: String
+  favicon: String
   location: String
   timezone: String
   copyright: String
@@ -124,6 +125,7 @@ input SettingsFilter {
   heroImage: ImageFilter
   bio: StringFilter
   projectDescription: StringFilter
+  favicon: ImageFilter
   location: StringFilter
   timezone: StringFilter
   copyright: StringFilter
@@ -257,6 +259,7 @@ input SettingsMutation {
   heroImage: String
   bio: String
   projectDescription: String
+  favicon: String
   location: String
   timezone: String
   copyright: String

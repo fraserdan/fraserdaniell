@@ -61,6 +61,12 @@ export default defineConfig({
             ui: { component: 'textarea' },
           },
           {
+            type: 'image',
+            name: 'favicon',
+            label: 'Favicon',
+            description: 'Recommended: 512 × 512px PNG or SVG. Shown as the browser tab icon.',
+          },
+          {
             type: 'string',
             name: 'location',
             label: 'Location',

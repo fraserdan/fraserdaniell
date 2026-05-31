@@ -190,6 +190,7 @@ export type Settings = Node & Document & {
   heroImage?: Maybe<Scalars['String']['output']>;
   bio: Scalars['String']['output'];
   projectDescription?: Maybe<Scalars['String']['output']>;
+  favicon?: Maybe<Scalars['String']['output']>;
   location?: Maybe<Scalars['String']['output']>;
   timezone?: Maybe<Scalars['String']['output']>;
   copyright?: Maybe<Scalars['String']['output']>;
@@ -218,6 +219,7 @@ export type SettingsFilter = {
   heroImage?: InputMaybe<ImageFilter>;
   bio?: InputMaybe<StringFilter>;
   projectDescription?: InputMaybe<StringFilter>;
+  favicon?: InputMaybe<ImageFilter>;
   location?: InputMaybe<StringFilter>;
   timezone?: InputMaybe<StringFilter>;
   copyright?: InputMaybe<StringFilter>;
@@ -417,6 +419,7 @@ export type SettingsMutation = {
   heroImage?: InputMaybe<Scalars['String']['input']>;
   bio?: InputMaybe<Scalars['String']['input']>;
   projectDescription?: InputMaybe<Scalars['String']['input']>;
+  favicon?: InputMaybe<Scalars['String']['input']>;
   location?: InputMaybe<Scalars['String']['input']>;
   timezone?: InputMaybe<Scalars['String']['input']>;
   copyright?: InputMaybe<Scalars['String']['input']>;
@@ -456,7 +459,7 @@ export type ProjectsMutation = {
   imageBlocks?: InputMaybe<Array<InputMaybe<ProjectsImageBlocksMutation>>>;
 };
 
-export type SettingsPartsFragment = { __typename: 'Settings', heroVideo?: string | null, heroVideoMobile?: string | null, heroImage?: string | null, bio: string, projectDescription?: string | null, location?: string | null, timezone?: string | null, copyright?: string | null };
+export type SettingsPartsFragment = { __typename: 'Settings', heroVideo?: string | null, heroVideoMobile?: string | null, heroImage?: string | null, bio: string, projectDescription?: string | null, favicon?: string | null, location?: string | null, timezone?: string | null, copyright?: string | null };
 
 export type ProjectsPartsFragment = { __typename: 'Projects', client: string, order?: number | null, cardImage?: string | null, cardImageOverlay?: string | null, cardDescription?: string | null, stickyDescription?: string | null, imageBlocks?: Array<{ __typename: 'ProjectsImageBlocksFullWidth', src?: string | null, alt?: string | null } | { __typename: 'ProjectsImageBlocksFullWidthVideo', src?: string | null } | { __typename: 'ProjectsImageBlocksPair', leftSrc?: string | null, leftAlt?: string | null, leftVideoSrc?: string | null, rightSrc?: string | null, rightAlt?: string | null, rightVideoSrc?: string | null } | null> | null };
 
@@ -465,7 +468,7 @@ export type SettingsQueryVariables = Exact<{
 }>;
 
 
-export type SettingsQuery = { __typename?: 'Query', settings: { __typename: 'Settings', id: string, heroVideo?: string | null, heroVideoMobile?: string | null, heroImage?: string | null, bio: string, projectDescription?: string | null, location?: string | null, timezone?: string | null, copyright?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type SettingsQuery = { __typename?: 'Query', settings: { __typename: 'Settings', id: string, heroVideo?: string | null, heroVideoMobile?: string | null, heroImage?: string | null, bio: string, projectDescription?: string | null, favicon?: string | null, location?: string | null, timezone?: string | null, copyright?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type SettingsConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -477,7 +480,7 @@ export type SettingsConnectionQueryVariables = Exact<{
 }>;
 
 
-export type SettingsConnectionQuery = { __typename?: 'Query', settingsConnection: { __typename?: 'SettingsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SettingsConnectionEdges', cursor: string, node?: { __typename: 'Settings', id: string, heroVideo?: string | null, heroVideoMobile?: string | null, heroImage?: string | null, bio: string, projectDescription?: string | null, location?: string | null, timezone?: string | null, copyright?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type SettingsConnectionQuery = { __typename?: 'Query', settingsConnection: { __typename?: 'SettingsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SettingsConnectionEdges', cursor: string, node?: { __typename: 'Settings', id: string, heroVideo?: string | null, heroVideoMobile?: string | null, heroImage?: string | null, bio: string, projectDescription?: string | null, favicon?: string | null, location?: string | null, timezone?: string | null, copyright?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type ProjectsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -506,6 +509,7 @@ export const SettingsPartsFragmentDoc = gql`
   heroImage
   bio
   projectDescription
+  favicon
   location
   timezone
   copyright
