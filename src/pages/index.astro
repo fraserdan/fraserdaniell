@@ -20,11 +20,11 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
       <div class="hero-inner">
         {heroVideo && heroVideoMobile ? (
           <>
-            <video class="hero-video--desktop" autoplay loop muted playsinline src={heroVideo}></video>
-            <video class="hero-video--mobile" autoplay loop muted playsinline src={heroVideoMobile}></video>
+            <video class="hero-video--desktop" autoplay loop muted playsinline webkit-playsinline src={heroVideo}></video>
+            <video class="hero-video--mobile" autoplay loop muted playsinline webkit-playsinline src={heroVideoMobile}></video>
           </>
         ) : heroVideo ? (
-          <video autoplay loop muted playsinline src={heroVideo}></video>
+          <video autoplay loop muted playsinline webkit-playsinline src={heroVideo}></video>
         ) : (
           <img src={heroImage} alt="Fraser Daniell — featured project" />
         )}

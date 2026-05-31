@@ -49,6 +49,16 @@ const favicon = settings?.data.favicon;
       } else {
         document.querySelectorAll('video').forEach(tryPlay);
       }
+
+      // Fallback for Low Power Mode / system-level autoplay blocks
+      document.addEventListener('touchstart', function () {
+        document.querySelectorAll('video').forEach(function (v) {
+          if (v.paused && getComputedStyle(v).display !== 'none') {
+            v.muted = true;
+            v.play().catch(function () {});
+          }
+        });
+      }, { once: true, passive: true });
     })();
   </script>
 </body>
