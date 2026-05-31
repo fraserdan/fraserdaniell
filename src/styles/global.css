@@ -461,7 +461,7 @@ footer {
   }
 
   .hero-inner {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 5;
   }
 
   .hero-video--desktop { display: none; }
