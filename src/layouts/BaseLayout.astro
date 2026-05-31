@@ -24,14 +24,29 @@ const favicon = settings?.data.favicon;
 <body>
   <slot />
   <script is:inline>
-    document.querySelectorAll('video').forEach(function (v) {
-      v.muted = true;
-      v.play().catch(function () {
-        v.addEventListener('canplay', function () {
-          v.play().catch(function () {});
-        }, { once: true });
-      });
-    });
+    (function () {
+      function tryPlay(v) {
+        if (getComputedStyle(v).display === 'none') return;
+        v.muted = true;
+        v.play().catch(function () {
+          v.addEventListener('canplay', function () {
+            v.muted = true;
+            v.play().catch(function () {});
+          }, { once: true });
+        });
+      }
+
+      if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) tryPlay(entry.target);
+          });
+        }, { threshold: 0 });
+        document.querySelectorAll('video').forEach(function (v) { obs.observe(v); });
+      } else {
+        document.querySelectorAll('video').forEach(tryPlay);
+      }
+    })();
   </script>
 </body>
 </html>
