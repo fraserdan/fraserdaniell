@@ -1,6 +1,7 @@
 fragment SettingsParts on Settings {
   __typename
   heroVideo
+  heroVideoMobile
   heroImage
   bio
   projectDescription

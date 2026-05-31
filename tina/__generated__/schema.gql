@@ -92,6 +92,7 @@ union DocumentNode = Settings | Projects | Folder
 
 type Settings implements Node & Document {
   heroVideo: String
+  heroVideoMobile: String
   heroImage: String
   bio: String!
   projectDescription: String
@@ -119,6 +120,7 @@ input StringFilter {
 
 input SettingsFilter {
   heroVideo: ImageFilter
+  heroVideoMobile: ImageFilter
   heroImage: ImageFilter
   bio: StringFilter
   projectDescription: StringFilter
@@ -251,6 +253,7 @@ input DocumentMutation {
 
 input SettingsMutation {
   heroVideo: String
+  heroVideoMobile: String
   heroImage: String
   bio: String
   projectDescription: String

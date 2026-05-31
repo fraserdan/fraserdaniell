@@ -32,8 +32,14 @@ export default defineConfig({
           {
             type: 'image',
             name: 'heroVideo',
-            label: 'Hero video (optional)',
-            description: 'Upload an MP4 video. When set, the video plays instead of the hero image. Use a compressed H.264 MP4 for best browser support.',
+            label: 'Hero video — desktop',
+            description: 'Upload an MP4 video. Recommended: 1920 × 1280px (landscape). Use a compressed H.264 MP4 for best browser support.',
+          },
+          {
+            type: 'image',
+            name: 'heroVideoMobile',
+            label: 'Hero video — mobile',
+            description: 'Optional. Upload a portrait MP4 for mobile. Recommended: 1080 × 1350px (4:5). Falls back to desktop video if not set.',
           },
           {
             type: 'image',
