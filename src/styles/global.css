@@ -242,20 +242,6 @@ nav a:hover,
   cursor: none;
 }
 
-.work-card--coming-soon .work-card-image {
-  position: relative;
-}
-
-.work-card--coming-soon .work-card-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #fff;
-  mix-blend-mode: difference;
-  opacity: 0.5;
-  pointer-events: none;
-}
-
 .coming-soon-cursor {
   position: fixed;
   top: 0;
@@ -264,7 +250,8 @@ nav a:hover,
   font-size: 14px;
   font-weight: 600;
   letter-spacing: -0.03em;
-  color: #000;
+  color: #fff;
+  mix-blend-mode: difference;
   opacity: 0;
   transition: opacity 0.15s ease;
   z-index: 9999;
