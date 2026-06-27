@@ -45,20 +45,36 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
 
       <div class="work-grid">
         {projects.map((project) => (
-          <a class="work-card" href={`/projects/${project.id}`}>
-            <div class={`work-card-image${project.data.cardImageOverlay ? ' has-overlay' : ''}`}>
-              <img src={project.data.cardImage} alt={project.data.client} />
-              {project.data.cardImageOverlay && (
-                <img src={project.data.cardImageOverlay} alt="" aria-hidden="true" />
-              )}
+          project.data.comingSoon ? (
+            <div class="work-card work-card--coming-soon">
+              <div class={`work-card-image${project.data.cardImageOverlay ? ' has-overlay' : ''}`}>
+                <img src={project.data.cardImage} alt={project.data.client} />
+                {project.data.cardImageOverlay && (
+                  <img src={project.data.cardImageOverlay} alt="" aria-hidden="true" />
+                )}
+              </div>
+              <div class="work-card-info">
+                <div class="work-card-client">{project.data.client}</div>
+                <div class="work-card-desc">{project.data.cardDescription}</div>
+              </div>
             </div>
-            <div class="work-card-info">
-              <div class="work-card-client">{project.data.client}</div>
-              <div class="work-card-desc">{project.data.cardDescription}</div>
-            </div>
-          </a>
+          ) : (
+            <a class="work-card" href={`/projects/${project.id}`}>
+              <div class={`work-card-image${project.data.cardImageOverlay ? ' has-overlay' : ''}`}>
+                <img src={project.data.cardImage} alt={project.data.client} />
+                {project.data.cardImageOverlay && (
+                  <img src={project.data.cardImageOverlay} alt="" aria-hidden="true" />
+                )}
+              </div>
+              <div class="work-card-info">
+                <div class="work-card-client">{project.data.client}</div>
+                <div class="work-card-desc">{project.data.cardDescription}</div>
+              </div>
+            </a>
+          )
         ))}
       </div>
+      <div class="coming-soon-cursor" id="coming-soon-cursor">Coming Soon</div>
     </section>
 
   </main>
@@ -67,6 +83,19 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
 </BaseLayout>
 
 <script is:inline>
+  // ── Coming soon cursor ────────────────────────────────────────
+  (function () {
+    const label = document.getElementById('coming-soon-cursor');
+    document.querySelectorAll('.work-card--coming-soon').forEach(card => {
+      card.addEventListener('mouseenter', () => { label.style.opacity = '1'; });
+      card.addEventListener('mouseleave', () => { label.style.opacity = '0'; });
+      card.addEventListener('mousemove', e => {
+        label.style.left = e.clientX + 'px';
+        label.style.top  = e.clientY + 'px';
+      });
+    });
+  })();
+
   // ── Hero mask — trigger on first scroll ──────────────────────
   (function () {
     const hero    = document.querySelector('.hero-inner');

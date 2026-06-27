@@ -30,6 +30,7 @@ const projects = defineCollection({
     cardImageOverlay: z.string().optional(),
     cardDescription: z.string().optional().default(''),
     stickyDescription: z.string().optional(),
+    comingSoon: z.boolean().optional().default(false),
     imageBlocks: z.array(imageBlockSchema).optional().default([]),
   }),
 });
