@@ -217,6 +217,7 @@ nav a:hover,
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex: 1;
 }
 
 .work-card-client {
