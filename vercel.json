@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/projects/Zoox", "destination": "/projects/zoox", "permanent": true },
+    { "source": "/projects/nike-pacific", "destination": "/", "permanent": false }
+  ]
+}

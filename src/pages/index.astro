@@ -10,7 +10,7 @@ const { bio, heroImage, heroVideo, heroVideoMobile } = settings.data;
 const allProjects = await getCollection('projects');
 const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
-<BaseLayout title="Fraser Daniell">
+<BaseLayout title="Fraser Daniell — Strategy & Art Direction">
   <Header />
 
   <main class="home-main">
@@ -61,9 +61,9 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
           ) : (
             <a class="work-card" href={`/projects/${project.id}`}>
               <div class={`work-card-image${project.data.cardImageOverlay ? ' has-overlay' : ''}`}>
-                <img src={project.data.cardImage} alt={project.data.client} />
+                <img src={project.data.cardImage} alt={project.data.client} loading="lazy" />
                 {project.data.cardImageOverlay && (
-                  <img src={project.data.cardImageOverlay} alt="" aria-hidden="true" />
+                  <img src={project.data.cardImageOverlay} alt="" aria-hidden="true" loading="lazy" />
                 )}
               </div>
               <div class="work-card-info">
@@ -102,6 +102,12 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
     const START   = 64;
     let triggered = false;
 
+    // Skip the reveal entirely for reduced motion, or if the page loads already scrolled
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.scrollY > 0) {
+      hero.classList.add('open');
+      return;
+    }
+
     function initialClip() {
       const w = hero.offsetWidth, h = hero.offsetHeight;
       return `inset(${((h - START) / 2).toFixed(1)}px ${((w - START) / 2).toFixed(1)}px round 4px)`;
@@ -125,6 +131,7 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
       triggered = true;
       document.removeEventListener('wheel',     onWheel,     { passive: false });
       document.removeEventListener('touchmove', onTouchMove, { passive: false });
+      document.removeEventListener('keydown',   onKeyDown);
       hero.classList.add('open');
       hero.style.clipPath = 'inset(0px round 4px)';
       hero.addEventListener('transitionend', (e) => {
@@ -136,12 +143,22 @@ const projects = allProjects.sort((a, b) => (a.data.order ?? 99) - (b.data.order
     function onWheel(e) { e.preventDefault(); if (e.deltaY > 0) trigger(); }
     function onTouchMove(e) { e.preventDefault(); trigger(); }
 
+    const SCROLL_KEYS = [' ', 'PageDown', 'ArrowDown', 'End'];
+    function onKeyDown(e) {
+      if (!SCROLL_KEYS.includes(e.key) || e.target.closest('button, a, input, textarea')) return;
+      e.preventDefault();
+      trigger();
+    }
+
     const sb = window.innerWidth - document.documentElement.clientWidth;
     document.documentElement.style.overflow     = 'hidden';
     document.documentElement.style.paddingRight = sb + 'px';
 
     document.addEventListener('wheel',     onWheel,     { passive: false });
     document.addEventListener('touchmove', onTouchMove, { passive: false });
+    document.addEventListener('keydown',   onKeyDown);
+    // Catch anything else that moves the page, e.g. tabbing to a card below the fold
+    window.addEventListener('scroll', trigger, { once: true, passive: true });
     window.addEventListener('resize', () => { if (!triggered) setInitial(); }, { passive: true });
   })();
 </script>

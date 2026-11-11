@@ -5,21 +5,26 @@ import Footer from '../../components/Footer.astro';
 import { getCollection, getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
-  return projects.map((project) => ({
+  const projects = (await getCollection('projects', (p) => !p.data.comingSoon))
+    .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+  return projects.map((project, i) => ({
     params: { slug: project.id },
-    props: { project },
+    props: { project, next: projects[(i + 1) % projects.length] },
   }));
 }
 
-const { project } = Astro.props;
-const { client, stickyDescription, imageBlocks = [] } = project.data;
+const { project, next } = Astro.props;
+const { client, stickyDescription, cardDescription, cardImage, imageBlocks = [] } = project.data;
 
 // Fall back to global description if project doesn't override
 const settings = await getEntry('settings', 'main');
 const description = stickyDescription || settings.data.projectDescription || '';
 ---
-<BaseLayout title={`${client} — Fraser Daniell`}>
+<BaseLayout
+  title={`${client} — Fraser Daniell`}
+  description={cardDescription || description || undefined}
+  image={cardImage || undefined}
+>
   <Header homeLink="/" />
 
   <main class="project-main">
@@ -80,6 +85,13 @@ const description = stickyDescription || settings.data.projectDescription || '';
 
         <!-- Description shown after first image on mobile -->
         <div class="mobile-desc">{description}</div>
+
+        {next.id !== project.id && (
+          <a class="next-project" href={`/projects/${next.id}`}>
+            <p class="section-eyebrow">Next project</p>
+            <p class="next-project-title">{next.data.client} <span aria-hidden="true">→</span></p>
+          </a>
+        )}
 
       </div>
     </div>

@@ -1,14 +1,19 @@
 ---
 import '../styles/global.css';
 import { getEntry } from 'astro:content';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title: string;
+  description?: string;
+  image?: string;
 }
 
-const { title } = Astro.props;
 const settings = await getEntry('settings', 'main');
 const favicon = settings?.data.favicon;
+const { title, description = settings.data.bio, image = '/og-image.jpg' } = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(/(.)\/$/, '$1'), Astro.site);
+const imageUrl = new URL(image, Astro.site);
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -16,10 +21,20 @@ const favicon = settings?.data.favicon;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Fraser Daniell" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={imageUrl} />
+  <meta name="twitter:card" content="summary_large_image" />
   {favicon && <link rel="icon" href={favicon} />}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&display=swap" rel="stylesheet" />
+  <Analytics />
 </head>
 <body>
   <slot />

@@ -1,7 +1,7 @@
 {
   "heroVideo": "/images/Hero-Home.mp4",
   "heroVideoMobile": "/images/Hero-Home-Mobile.mp4",
-  "heroImage": "http://localhost:3845/assets/4737de71df6688634a56f7d155ba83f8f4118982.png",
+  "heroImage": "/og-image.jpg",
   "bio": "Fraser works across strategy and art direction. Curious by nature and experimental by habit. Spanning brand, digital, CGI, and beyond.",
   "projectDescription": "",
   "favicon": "/images/Favicon.png",

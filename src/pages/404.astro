@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout title="Not found — Fraser Daniell">
+  <Header />
+
+  <main class="home-main not-found">
+    <section class="bio">
+      <p class="section-eyebrow">404</p>
+      <p>This page doesn't exist. <a href="/" class="not-found-link">Back to the work →</a></p>
+    </section>
+  </main>
+
+  <Footer showLogo={false} />
+</BaseLayout>
